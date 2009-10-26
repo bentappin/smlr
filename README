@@ -1,0 +1,11 @@
+smlr is a simple URL shortener for the web.
+
+Not too sure on setup instructions just yet. It should be fairly straightforward though.
+
+ * Download
+ * Setup database
+ * Change settings.py database credentials
+ * Change settings.py SECRET_KEY, templates, static etc. settings
+ * Run `python manage.py syncdb'
+ * Run `python manager.py runserver'
+

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form action="/" method="POST">
+  <div class="fieldWrapper">
+    <label for="id_long_url">Long URL:</label>
+    {{ form.long_url }}
+	{{ form.long_url.errors }}
+  </div>
+  <p><input type="submit" value="Make smlr" id="make_smlr" /></p>
+
+  <div id="result">
+  {% if short_url %}{% if long_url %}
+    <p>Your smlr URL is <a href="{{ short_url }}">{{ short_url }}</a></p>
+	<p>Tip: Go to <a href="{{ short_url }}+">{{ short_url }}+</a> to get stats on your smlr URL.</p>
+  {% endif %}{% endif %}
+  </div>
+</form>
+{% endblock %}
