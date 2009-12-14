@@ -17,11 +17,10 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # (r'^admin/', include(admin.site.urls)),
 
-	(r'^$', index),
-	(r'^(\w+)\+$', stats),
-	(r'^(\w+)$', reverse),
-	(r'^(\d+)$', reverse), # Account for 10, 11 etc.
-	
+    (r'^$', index),
+    (r'^(\w+)$', reverse),
+    (r'^(\d+)$', reverse),
+    (r'^(\w+)\+$', stats),
 )
 
 if settings.DEBUG:
