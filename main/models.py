@@ -9,6 +9,7 @@ class URL(models.Model):
 class Redirect(models.Model):
 	url = models.ForeignKey(URL)
 	created = models.DateTimeField(null=True, blank=True, auto_now_add=True)
+	remote_host = models.CharField(max_length=255, blank=True, null=True)
 	remote_ip = models.CharField(max_length=15, blank=True, null=True)
 	remote_port = models.CharField(max_length=8, blank=True, null=True)
 	request_method = models.CharField(max_length=8, blank=True, null=True)

@@ -53,6 +53,7 @@ def reverse(request, alias):
 	redirect = Redirect()
 	redirect.url = url
 	redirect.user_agent = request.META.get('HTTP_USER_AGENT', None)
+	redirect.remote_host = request.META.get('REMOTE_HOST', None)
 	redirect.remote_ip = request.META.get('REMOTE_ADDR', None)
 	redirect.remote_port = request.META.get('REMOTE_PORT', None)
 	redirect.request_method = request.META.get('REQUEST_METHOD', None)
