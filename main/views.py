@@ -22,12 +22,23 @@ def index(request):
 			else:
 				url = URL.objects.create(original_url=form.cleaned_data['long_url'])
 				
-			url.alias = base36encode(url.id)
+				potential_alias = base36encode(url.id)
+				qs = URL.objects.filter(alias=potential_alias)
+				counter = 1
+				
+				while len(qs) >= 1:
+					potential_alias = base36encode(url.id + counter)
+					qs = URL.objects.filter(alias=potential_alias)
+					counter += 1
+				
+				url.alias = potential_alias
+				
 			url.shortenings += 1
 			url.save()
 			
 			long_url = form.cleaned_data['long_url']
-			short_url = request.META['wsgi.url_scheme'] + "://" + request.META['HTTP_HOST'] + "/" + url.alias
+			#short_url = request.META['wsgi.url_scheme'] + "://" + request.META['HTTP_HOST'] + "/" + url.alias
+			short_url = "http://smlr.mp/" + url.alias
 	else:
 		form = URLForm()
 	
