@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from smlr.main.views import *
-from smlr import settings
+from smlr import settings_local as settings
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
