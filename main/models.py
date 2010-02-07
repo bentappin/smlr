@@ -5,6 +5,7 @@ class URL(models.Model):
 	shortenings = models.IntegerField(default=0)
 	created = models.DateTimeField(null=True, blank=True, auto_now_add=True)
 	alias = models.CharField(max_length=8, null=True, blank=True)
+	is_custom_alias = models.BooleanField(default=False)
 
 class Redirect(models.Model):
 	url = models.ForeignKey(URL)

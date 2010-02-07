@@ -21,11 +21,6 @@ urlpatterns = patterns('',
     (r'^(\w+)$', reverse),
     (r'^(\d+)$', reverse),
     (r'^(\w+)\+$', stats),
-)
-
-if settings.DEBUG:
-  urlpatterns += patterns('',
-	# Dev static files
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
 	        {'document_root': settings.MEDIA_ROOT}),
-  )
+)
