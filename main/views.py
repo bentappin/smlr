@@ -84,4 +84,5 @@ def stats(request, alias):
 	data["reduction_percent"] = 100 - int(round((float(len(data["short_url"])) /
 								float(len(data["original_url"]))) * 100))
 	data["redirects"] = url.redirect_set.count()
+	data["shortenings"] = url.shortenings
 	return render_to_response('stats.html', data)
