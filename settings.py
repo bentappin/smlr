@@ -84,7 +84,7 @@ INSTALLED_APPS = (
     #'django.contrib.contenttypes',
     #'django.contrib.sessions',
     #'django.contrib.sites',
-	'main',
+	'smlr.main',
 )
 
 # Import environment specific settings and overrides.

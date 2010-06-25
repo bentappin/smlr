@@ -16,10 +16,10 @@
   <p><input type="submit" value="Make smlr" id="make_smlr" /></p>
 
   <div id="result">
-  {% if short_url %}{% if long_url %}
-    <p>Your smlr URL is <a href="{{ short_url }}">{{ short_url }}</a></p>
-	<p>Tip: Go to <a href="{{ short_url }}+">{{ short_url }}+</a> to get stats on your smlr URL.</p>
-  {% endif %}{% endif %}
+  {% if url %}
+    <p>Your smlr URL is <a href="{{ url.get_short_url }}">{{ url.get_short_url }}</a></p>
+	<p>Tip: Go to <a href="{{ url.get_short_url }}+">{{ url.get_short_url }}+</a> to get stats on your smlr URL.</p>
+  {% endif %}
   </div>
 </form>
 {% endblock %}

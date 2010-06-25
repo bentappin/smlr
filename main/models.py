@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+
 
 class URL(models.Model):
 	original_url = models.URLField()
@@ -6,6 +8,10 @@ class URL(models.Model):
 	created = models.DateTimeField(null=True, blank=True, auto_now_add=True)
 	alias = models.CharField(max_length=8, null=True, blank=True)
 	is_custom_alias = models.BooleanField(default=False)
+	
+	def get_short_url(self):
+		return settings.BASE_URL + '/' + self.alias
+
 
 class Redirect(models.Model):
 	url = models.ForeignKey(URL)

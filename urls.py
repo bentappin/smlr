@@ -5,10 +5,10 @@ from smlr.main.views import *
 
 
 urlpatterns = patterns('',
-	(r'^$', index),
-	(r'^(\w+)$', reverse),
-	(r'^(\d+)$', reverse),
-	(r'^(\w+)\+$', stats),
+	url(r'^$', index),
+	url(r'^(\w+)$', reverse),
+	url(r'^(\d+)$', reverse),
+	url(r'^(\w+)\+$', stats),
 )
 
 if settings.SERVE_STATIC == True:

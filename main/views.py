@@ -10,8 +10,7 @@ from main.utils import *
 
 
 def index(request):
-	long_url = None
-	short_url = None
+	url = None
 	
 	if request.method == 'POST':
 		form = URLForm(request.POST)
@@ -53,8 +52,7 @@ def index(request):
 	
 	return render_to_response('index.html', {
 		'form': form,
-		'long_url': long_url,
-		'short_url': short_url,
+		'url': url,
 	})
 
 
@@ -82,12 +80,14 @@ def stats(request, alias):
 	except:
 		return HttpResponseRedirect("/")
 
-	data = {}
-	data["original_url"] = url.original_url
-	data["short_url"] = request.META['wsgi.url_scheme'] + "://" + request.META['HTTP_HOST'] + "/" + url.alias
-	data["reduction_chars"] = len(data["original_url"]) - len(data["short_url"])
-	data["reduction_percent"] = 100 - int(round((float(len(data["short_url"])) /
-								float(len(data["original_url"]))) * 100))
-	data["redirects"] = url.redirect_set.count()
-	data["shortenings"] = url.shortenings
-	return render_to_response('stats.html', data)
+	original_url = url.original_url
+	short_url = url.get_short_url()
+	
+	reduction_chars = len(original_url) - len(short_url)
+	reduction_percent = 100 - int(round((float(len(short_url)) /
+								float(len(original_url))) * 100))
+								
+	redirects = url.redirect_set.count()
+	shortenings = url.shortenings
+	
+	return render_to_response('stats.html', locals())
