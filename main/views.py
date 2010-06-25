@@ -4,9 +4,9 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import simplejson
 
-from main.models import URL, Redirect
-from main.forms import URLForm
-from main.utils import *
+from smlr.main.models import URL, Redirect
+from smlr.main.forms import URLForm
+from smlr.main.utils import *
 
 
 def index(request):
