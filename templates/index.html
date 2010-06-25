@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-  <form action="/" method="POST">
-  <div class="fieldWrapper">
+<form action="/" method="POST">
 	<p>
-	    {{ form.long_url.label_tag }}
-	    {{ form.long_url }}
+	  {{ form.long_url.label_tag }}
+		{{ form.long_url }}
 		{{ form.long_url.errors }}
 	</p>
 	<p>
@@ -12,13 +11,14 @@
 		{{ form.alias }} <span>[Optional]</span>
 		{{ form.alias.errors }}
 	<p>
-  </div>
+
   <p><input type="submit" value="Make smlr" id="make_smlr" /></p>
 
   <div id="result">
   {% if url %}
     <p>Your smlr URL is <a href="{{ url.get_short_url }}">{{ url.get_short_url }}</a></p>
-	<p>Tip: Go to <a href="{{ url.get_short_url }}+">{{ url.get_short_url }}+</a> to get stats on your smlr URL.</p>
+	<p>Tip: Go to <a href="{{ url.get_short_url }}+">{{ url.get_short_url }}+</a>
+		to get stats on your smlr URL.</p>
   {% endif %}
   </div>
 </form>
