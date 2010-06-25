@@ -1,11 +1,13 @@
 smlr is a simple URL shortener for the web.
 
-Not too sure on setup instructions just yet. It should be fairly straightforward though.
+Written with Django 1.1 but should work with Django 1.2.
+
+To set up a development environment...
 
  * Download
  * Setup database
  * Change settings.py database credentials
- * Change settings.py SECRET_KEY, templates, static etc. settings
+ * Change settings.py SECRET_KEY, templates, static etc. settings or override settings_local.py
  * Run `python manage.py syncdb'
  * Run `python manager.py runserver'
 

@@ -2,13 +2,16 @@
 {% block content %}
   <form action="/" method="POST">
   <div class="fieldWrapper">
-    <label for="id_long_url">Long URL:</label>
-    {{ form.long_url }}
-	{{ form.long_url.errors }}
-	<br/>
-	<label for "id_alias">Custom shortname:</label>
-	{{ form.alias }} <span>[Optional]</span>
-	{{ form.alias.errors }}
+	<p>
+	    {{ form.long_url.label_tag }}
+	    {{ form.long_url }}
+		{{ form.long_url.errors }}
+	</p>
+	<p>
+		{{ form.alias.label_tag }}
+		{{ form.alias }} <span>[Optional]</span>
+		{{ form.alias.errors }}
+	<p>
   </div>
   <p><input type="submit" value="Make smlr" id="make_smlr" /></p>
 

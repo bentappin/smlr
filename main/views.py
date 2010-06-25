@@ -1,16 +1,17 @@
+from datetime import datetime
+
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import simplejson
 
-from smlr.main.forms import URLForm
-from smlr.main.models import URL, Redirect
-from smlr.main.utils import *
+from main.models import URL, Redirect
+from main.forms import URLForm
+from main.utils import *
 
-from datetime import datetime
 
 def index(request):
-	long_url = ""
-	short_url = ""
+	long_url = None
+	short_url = None
 	
 	if request.method == 'POST':
 		form = URLForm(request.POST)
@@ -18,15 +19,15 @@ def index(request):
 		if form.is_valid():
 			url = None
 			
-			if form.cleaned_data['alias'] and len(form.cleaned_data['alias']) > 0:
-				url = URL.objects.create(original_url=form.cleaned_data['long_url'],
-																 alias=form.cleaned_data['alias'],
-																 is_custom_alias=True)	
+			if form.cleaned_data['alias']:
+				url = URL.objects.create(	original_url=form.cleaned_data['long_url'],
+											alias=form.cleaned_data['alias'],
+											is_custom_alias=True)	
 			else:
-				qs = URL.objects.filter(original_url=form.cleaned_data['long_url'])
-
-				if qs:
-					url = qs[0]
+				try:
+					url = URL.objects.filter(original_url=form.cleaned_data['long_url'], is_custom_alias=False)[0]
+				except IndexError:
+					pass
 													
 				if not url:
 					url = URL.objects.create(original_url=form.cleaned_data['long_url'])
@@ -35,7 +36,7 @@ def index(request):
 					qs = URL.objects.filter(alias=potential_alias)
 					counter = 1
 
-					while len(qs) >= 1:
+					while qs:
 						potential_alias = base36encode(url.id + counter)
 						qs = URL.objects.filter(alias=potential_alias)
 						counter += 1
@@ -50,14 +51,17 @@ def index(request):
 	else:
 		form = URLForm()
 	
-	return render_to_response('index.html', {	'form':form,
-																						'long_url': long_url,
-																						'short_url': short_url})
+	return render_to_response('index.html', {
+		'form': form,
+		'long_url': long_url,
+		'short_url': short_url,
+	})
+
 
 def reverse(request, alias):
 	try:
 		url = URL.objects.get(alias=alias)
-	except:
+	except URL.DoesNotExist:
 		return HttpResponseRedirect("/")
 	
 	redirect = Redirect()
@@ -70,6 +74,7 @@ def reverse(request, alias):
 	redirect.save()
 	
 	return HttpResponseRedirect(url.original_url)
+
 
 def stats(request, alias):
 	try:
