@@ -63,6 +63,10 @@ h4 {
 	padding-top: 0.6em;
 }
 
+small {
+	font-size: 0.85em;
+}
+
 #header {
 	font-family: "Trebuchet MS", helvetica, verdana, arial, sans-serif;
 	font-size: 1em;
@@ -110,16 +114,30 @@ body {
 	clear: both;
 }
 
-label {
+.form-row {
+	margin:1em 0;
+}
+
+.form-row .label-col {
+	float: left;
+	position: absolute;
+	width: 150px;
+	margin-top: 0.2em;
+}
+
+.form-row .input-col {
+	margin-left: 140px;
+	display: inline;
+}
+
+.form-row label {
 	width: 10em;
 	float: left;
 	text-align: right;
-	margin-right: 0.5em;
 	padding-top: 0.35em;
-	display: block;
 }
 
-label:after {
+.form-row label:after {
 	content: ':';
 }
 
@@ -132,7 +150,6 @@ label:after {
 }
 
 #make_smlr {
-	margin-left: 12em;
 	width: 10em;
 }
 

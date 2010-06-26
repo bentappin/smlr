@@ -1,18 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 <form action="/" method="POST">
+	<div class="form-row">
+		<div class="label-col">
+	  	{{ form.long_url.label_tag }}
+		</div>
+		<div class="input-col">
+			{{ form.long_url }}
+			{{ form.long_url.errors }}
+		</div>
+	</div>
+	
+	<div class="form-row">
+		<div class="label-col">
+			{{ form.alias.label_tag }}
+		</div>
+		<div class="input-col">
+			{{ form.alias }} <small>[Optional]</small>
+			{{ form.alias.errors }}
+		</div>
 	<p>
-	  {{ form.long_url.label_tag }}
-		{{ form.long_url }}
-		{{ form.long_url.errors }}
-	</p>
-	<p>
-		{{ form.alias.label_tag }}
-		{{ form.alias }} <span>[Optional]</span>
-		{{ form.alias.errors }}
-	<p>
-
-  <p><input type="submit" value="Make smlr" id="make_smlr" /></p>
+		
+	<div class="form-row">
+		<div class="input-col">
+  		<input type="submit" value="Make smlr" id="make_smlr" />
+		</div>
+	</div>
 
   <div id="result">
   {% if url %}
