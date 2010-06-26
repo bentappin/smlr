@@ -18,11 +18,15 @@ h1,h2,h3,h4,h5,h6 {
 	font-family: "Trebuchet MS", Helvetica, verdana, arial, sans-serif;
 }
 
-h1 {
+h1 a {
 	font-weight: normal;
 	font-size: 2.4em;
 	color: #0c6;
-	padding-bottom: 0.6em;
+	text-decoration: none;
+}
+
+h1 a:hover {
+	text-decoration: underline;
 }
 
 h2 {
@@ -94,7 +98,6 @@ body {
 
 #header {
 	height: 35px;
-	padding-bottom: 25px;
 	clear: both;
 }
 
