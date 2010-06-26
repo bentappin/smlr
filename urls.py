@@ -7,7 +7,6 @@ from smlr.main.views import *
 urlpatterns = patterns('',
 	url(r'^$', index),
 	url(r'^(\w+)$', reverse),
-	url(r'^(\d+)$', reverse),
 	url(r'^(\w+)\+$', stats),
 )
 

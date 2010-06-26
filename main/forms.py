@@ -1,3 +1,5 @@
+import re
+
 from django import forms
 from django.forms.models import ValidationError
 
@@ -9,7 +11,13 @@ class URLForm(forms.Form):
 	alias = forms.CharField(label="Custom shortname", max_length=8, required=False)
 	
 	def clean_alias(self):
-		qs = URL.objects.filter(alias=self.cleaned_data['alias'])
-		if qs and len(qs) > 0:
+		alias = self.cleaned_data['alias']
+
+		if alias and not re.compile('^\w*$').match(alias):
+			raise ValidationError("Your shortname can only contain letters, numbers and the underscore.")
+		
+		qs = URL.objects.filter(alias=alias)
+		if qs:
 			raise ValidationError("Sorry! That smlr URL already exists.")
-		return self.cleaned_data['alias']
+		
+		return alias
