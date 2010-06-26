@@ -23,26 +23,19 @@ def index(request):
 											alias=form.cleaned_data['alias'],
 											is_custom_alias=True)	
 			else:
-				try:
-					url = URL.objects.filter(original_url=form.cleaned_data['long_url'], is_custom_alias=False)[0]
-				except IndexError:
-					pass
-													
-				if not url:
-					url = URL.objects.create(original_url=form.cleaned_data['long_url'])
+				url = URL.objects.create(original_url=form.cleaned_data['long_url'])
 
-					potential_alias = base36encode(url.id)
+				potential_alias = base36encode(url.id)
+				qs = URL.objects.filter(alias=potential_alias)
+				counter = 1
+
+				while qs:
+					potential_alias = base36encode(url.id + counter)
 					qs = URL.objects.filter(alias=potential_alias)
-					counter = 1
+					counter += 1
 
-					while qs:
-						potential_alias = base36encode(url.id + counter)
-						qs = URL.objects.filter(alias=potential_alias)
-						counter += 1
+				url.alias = potential_alias
 
-					url.alias = potential_alias
-
-			url.shortenings += 1
 			url.save()
 			
 			long_url = form.cleaned_data['long_url']
