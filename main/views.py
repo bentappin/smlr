@@ -114,6 +114,12 @@ def api_shorten(request):
         }), mimetype="application/json")
 			
     if alias:
+        if len(alias) > 8:
+            return HttpResponse(simplejson.dumps({
+                'status': 'error',
+                'message': 'Alias must be no more than 8 characters.'
+            }), mimetype="application/json")
+        
         url = URL.objects.create(   original_url=long_url,
                                     alias=alias,
                                     is_custom_alias=True)
