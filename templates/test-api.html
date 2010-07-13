@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#make_smlr').click(function () {
+                var long_url;
+                var alias;
+                
+                long_url = $('#id_long_url').val();
+                alias = $('#id_alias').val();
+                
+                $.post('/api/shorten/', {
+                    'url': long_url,    // Mandatory
+                    'alias': alias      // Optional
+                }, function(data) {
+                    if (data.status == 'ok') {
+                        $('#result').html('<p>Wahey!</p> <p>' + data.long_url + ' became ' + data.short_url + '</p>');
+                    } else if (data.status == 'error') {
+                        alert('There was an error: ' + data.message);
+                    } else {
+                        alert('Oops! Something went wrong.');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <h2>Test the API</h2>
+    
+	<div class="form-row">
+		<div class="label-col">
+	  	    <label for="id_long_url">Enter long url</label>
+		</div>
+		<div class="input-col">
+            <input id="id_long_url" type="text" value="http://www.google.com/" />
+		</div>
+	</div>
+	
+	<div class="form-row">
+		<div class="label-col">
+			<label for="id_alias">Custom shortname</label>
+		</div>
+		<div class="input-col">
+            <input id="id_alias" type="text" /> <small>[Optional]</small>
+	</div>
+		
+	<div class="form-row">
+		<div class="input-col">
+  		<input id="make_smlr" type="submit" value="Make smlr" />
+		</div>
+	</div>
+    
+    <div id="result"></div>
+{% endblock %}
