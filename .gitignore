@@ -17,3 +17,12 @@ logs/
 *.pyc
 *.swp
 settings_*.py
+bin
+develop-eggs
+downloads
+parts
+eggs
+src/*.egg-info
+.installed.cfg
+.mr.developer.cfg
+.idea
