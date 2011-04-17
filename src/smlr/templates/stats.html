@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-
-	<h3><a href="{{ short_url }}">{{ short_url }}</a> - some stats</h3>
-	<p>This smlr url redirects to <a href="{{ original_url }}">{{ original_url }}</a></p>
+	<h3>Some stats for <em><a href="{{ short_url }}">{{ short_url }}</a></em></h3>
+	<p>This Smlr URL redirects to <a href="{{ original_url }}">{{ original_url }}</a></p>
 	<p>I have redirected to it <span>{{ redirects }}</span> times.</p>
-	<p>It was reduced by <span>{{ reduction_chars }} characters</span> - that's about <span>{{ reduction_percent }}%</span>.</p>
-
+	<p>It was reduced by <span>{{ reduction_chars }} characters</span> - that's about <span>{{ reduction_percent }}%</span>!</p>
 {% endblock %}

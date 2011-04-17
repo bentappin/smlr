@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+<p>
+	Smlr is a simple URL shortening service. Enter a long URL; get a short one in
+	return that's useful for emails or web chat.
+</p>
+
 <form action="/" method="POST">
 	<div class="form-row">
 		<div class="label-col">
@@ -16,21 +21,21 @@
 			{{ form.alias.label_tag }}
 		</div>
 		<div class="input-col">
-			{{ form.alias }} <small>[Optional]</small>
+			{{ form.alias }}
 			{{ form.alias.errors }}
 	</div>
 		
 	<div class="form-row">
 		<div class="input-col">
-  		<input type="submit" value="Make smlr" id="make_smlr" />
+  			<input type="submit" class="button" value="Make It Smlr!" id="make_smlr" />
 		</div>
 	</div>
 
   <div id="result">
   {% if url %}
-    <p>Your smlr URL is <a href="{{ url.get_short_url }}">{{ url.get_short_url }}</a></p>
+    <p>Your Smlr URL is <a href="{{ url.get_short_url }}">{{ url.get_short_url }}</a></p>
 	<p>Tip: Go to <a href="{{ url.get_short_url }}+">{{ url.get_short_url }}+</a>
-		to get stats on your smlr URL.</p>
+		to get stats on your Smlr URL.</p>
   {% endif %}
   </div>
 </form>

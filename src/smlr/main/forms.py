@@ -7,8 +7,8 @@ from smlr.main.models import URL
 
 
 class URLForm(forms.Form):
-	long_url = forms.URLField(label="Long URL")
-	alias = forms.CharField(label="Custom shortname", max_length=8, required=False)
+	long_url = forms.URLField(label="URL")
+	alias = forms.CharField(label="Optional shortname", max_length=8, required=False)
 	
 	def clean_alias(self):
 		alias = self.cleaned_data['alias']
