@@ -15,6 +15,7 @@ def base36encode(number):
  
     return base36 or alphabet[0]
 
+
 # From Wikipedia: http://en.wikipedia.org/wiki/Base_36#Python_Conversion_Code
 def base36decode(number):
     return int(number,36)
